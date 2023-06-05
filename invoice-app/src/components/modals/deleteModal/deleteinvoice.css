@@ -1,0 +1,76 @@
+.deleteModalBody{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 5.6rem;
+    top: 0;
+    background: rgba(49, 49, 47, 0.8);
+}
+.deleteModalContent{
+    border: 1px solid var(--card);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--card);
+    width: 30rem;
+    position: fixed;
+    left: 35%;
+    top: 30%;
+}
+.msg{
+    padding: 1rem;
+} 
+.actionBtns{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 1rem;
+    gap: 1rem;
+}
+.cancelButton .cancelBtn, .deleteButton .deleteBtn{
+    padding: .5rem;
+    border-radius: 1rem;
+    border: none;
+}
+.cancelButton .cancelBtn:hover, .deleteButton .deleteBtn:hover{
+    cursor: pointer;
+}
+.deleteButton .deleteBtn{
+    background: var(--danger);
+    color: var(--card);
+}
+.cancelButton .cancelBtn{
+    background: var(--color-light-hover);
+    color: var(--primary-color);
+}
+@media screen and (max-width: 1024px) {
+    .deleteModalContent{
+        width: 30rem;
+        position: fixed;
+        left: 30%;
+        top: 30%;
+    }
+}
+@media screen and (max-width: 678px) {
+    .deleteModalBody{
+        left: 0rem;
+        top: 5rem;
+    }
+    .deleteModalContent{
+        width: 20rem;
+        left: 3rem;
+        top: 40%;
+    }
+}
+@media screen and (max-width: 375px) {
+    .deleteModalBody{
+        left: 0rem;
+        top: 4rem;
+    }
+    .deleteModalContent{
+        width: 20rem;
+        left: 2rem;
+        top: 40%;
+    }
+}

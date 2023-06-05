@@ -2,14 +2,29 @@ import React, { useState, useEffect } from 'react'
 import './carddetails.css'
 import { Link, useLocation } from 'react-router-dom';
 import { icons } from '../../icons';
+import EditInvoice from '../modals/editModal/EditInvoice';
+import DeleteInvoice from '../modals/deleteModal/DeleteInvoice';
 
 const CardDetails = () => {
     const location = useLocation();
     const [item, setItem] = useState([])
+    const [openEditModal, setOpenEditModal] = useState(false);
+    const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
     useEffect(() => {
         setItem(location.state.details.items);
     })
+
+    const toggleModal = () => {
+        const newModalBody = document.getElementById('newModalBody');
+        setOpenEditModal(false)
+        newModalBody.style.display = 'block';
+    }
+    const toggleDeleteModal = () => {
+        const deleteModalBody = document.getElementById('deleteModalBody');
+        setOpenDeleteModal(false)
+        deleteModalBody.style.display = 'block';
+    }
   return (
     <>
 
@@ -54,16 +69,16 @@ const CardDetails = () => {
                     <div className="viewcard-btns">
                         <div className="edit-btn">
                             <button className='edit'
-                                // onClick={
-                                //     () => setOpenEditModal(true)
-                                // }
+                                onClick={
+                                    () => setOpenEditModal(true)
+                                }
                             >Edit</button>
                         </div>
                         <div className="delete-btn">
                             <button className='delete'
-                                // onClick={
-                                //     () => setOpenDeleteModal(true)
-                                // }
+                                onClick={
+                                    () => setOpenDeleteModal(true)
+                                }
                             >Delete</button>
                         </div>
                         <div className="markAsPaid-btn">
@@ -72,12 +87,12 @@ const CardDetails = () => {
                     </div>
                 </div>
                 <div className="viewcard-body">
-                    {/* {
-                        openEditModal && <EditModal editID={location.state.details.id} closeModal={toggleModal} />
+                    {
+                        openEditModal && <EditInvoice editID={location.state.details.id} closeModal={toggleModal} />
                     }
                     {
-                        openDeleteModal && <DeleteModal invoiceID={location.state.details.id} closeModal={toggleDeleteModal} />
-                    } */}
+                        openDeleteModal && <DeleteInvoice invoiceID={location.state.details.id} closeModal={toggleDeleteModal} />
+                    }
                     <div className="card-address">
                         <div className="card-id">
                             <h4>#{location.state.details.id}</h4>

@@ -1,0 +1,18 @@
+.cancel-save-btn {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.cancel-save-btn .cancel {
+    background: var(--color-light);
+}
+
+.error {
+    font-size: .6rem;
+    color: var(--danger);
+}
+
+p.danger{
+    color: var(--danger);
+}

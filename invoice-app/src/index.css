@@ -38,6 +38,44 @@
   margin: 0;
   box-sizing: border-box;
 }
+a{
+  text-decoration: none;
+  color: #000;
+}
+.edit{
+  background: var(--edit-color);
+}
+.edit:hover{
+  background: var(--edit-hover-color);
+}
+.delete{
+  background: var(--danger);
+}
+.delete:hover{
+  background: var(--danger-hover);
+}
+.saveAsPaid{
+  background: var(--primary-color);
+}
+.saveAsPaid:hover{
+  background: var(--primary-color-hover);
+}
+.primary{
+  color: var(--primary-color);
+}
+.primary-hover{
+  color: var(--primary-color-hover);
+}
+.danger{
+  color: var(--danger);
+}
+.danger-hover{
+  color: var(--danger-hover);
+}
+.error{
+  font-size: .6rem;
+  color: var(--danger);
+}
 body{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background: var(--bg-color)

@@ -4,12 +4,14 @@ import { icons } from '../../icons';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-
+import NewInvoice from '../modals/newInvoice/NewInvoice';
 
 const MainBody = () => {
 
   const [data, setData] = useState([]);
-
+  const [openModal, setOpenModal] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
     axios
@@ -21,12 +23,36 @@ const MainBody = () => {
       });
   })
 
+  const getViewDetails = (id) => {
+    axios.get('data.json')
+    .then(response => {
+      const foundObject = response.data.find(obj => obj.id === id);
+      navigate('viewInvoice/'+`${id}`, {state:{
+        details:foundObject
+    }})
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
 
+  const submitForm = () => {
+    setIsSubmitted(true);
+  }
+
+  const toggleModal = () => {
+    const newModalBody = document.getElementById('newModalBody');
+    setOpenModal(false)
+    newModalBody.style.display = 'block';
+  }
 
   return (
     <>
       <div className="mainbody">
         <div className="container">
+          {
+            openModal && <NewInvoice submitForm={submitForm} closeModal={toggleModal} />
+          }
           <div className="header">
             <div className="left">
               <h2>Invoice</h2>
@@ -37,7 +63,9 @@ const MainBody = () => {
                 <p>Filter by status <img src={icons.arrowDown} alt="" /></p>
               </div>
               <div className="newInvoice">
-                <button>
+                <button
+                  onClick={() => setOpenModal(true)}
+                >
                   <img src={icons.plus} alt="" /> New Invoice
                 </button>
               </div>
@@ -50,7 +78,9 @@ const MainBody = () => {
               data.length > 0 ? data.map(item => {
                 return (
                   <>
-                    <div className="card">
+                    <div className="card"
+                      onClick={()=> getViewDetails(item.id)}
+                    >
                       <h4>#{item.id}</h4>
                       <p>{item.paymentDue}</p>
                       <p>{item.clientName}</p>

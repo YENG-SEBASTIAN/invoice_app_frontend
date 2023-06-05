@@ -1,0 +1,159 @@
+.overlay{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 6rem;
+    top: 0;
+    background: rgba(49, 49, 47, 0.8);
+}
+.overlay .modal-content{
+    width: 25rem;
+    height: 100vh;
+    background: var(--card);
+    border-radius: 0rem 1rem 1rem 0rem;
+    padding: .5rem;
+}
+.modal-content .main-modal{
+    width: 24rem;
+    overflow-y: auto;
+    height: 100vh;
+}
+.modal-content form h4{
+    margin-bottom: .6rem;
+    font-weight: 600;
+    color: var(--primary-color-hover)
+}
+.modal-content form h5{
+    color: var(--primary-color-hover);
+    font-size: .7rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+    margin-top: .5rem;
+}
+.modal-content .input-groups{
+    width: 100%;
+    padding: .7rem;
+}
+.input-groups label{
+    color: var(--primary-color-hover);
+    font-size: .6rem;
+}
+.modal-content .input-groups select, input[type='email'], input[type='text'],input[type='date']{
+    width: 100%;
+    padding: .4rem;
+    border-radius: .3rem;
+    border: 1px solid var(--primary-color-hover);
+}
+.input-groups .input-combo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-direction: row;
+}
+.input-groups .input-combo button{
+    margin-top: 2rem;
+}
+.list-items .combo input{
+    border: none;
+}
+.modal-content .input-groups button{
+    width: 100%;
+    padding: .4rem;
+    border-radius: 1rem;
+    border: none;
+    color: var(--primary-color-hover);
+    margin: .2rem;
+    transition: 1s;
+    margin-bottom: 4rem;
+}
+.modal-content .input-groups button:hover{
+    cursor: pointer;
+    background: var(--color-light-hover);
+}
+.invoice-control-btn{
+    background: var(--color-light);
+    border-radius: 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 23rem;
+}
+.control-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.control-btn button{
+    font-size: .6rem;
+}
+.input-groups .addNew-invoice{
+    padding: 2rem;
+}
+.control-btn .draft-save-btn{
+    display: flex;align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.discard-btn{
+    background: var(--color-light);
+    color: var(--primary-color-hover);
+    padding: .5rem;
+    border: none;
+    border-radius: 1rem;
+    transition: 1s;
+}
+.discard-btn:hover{
+    cursor: pointer;
+    background: var(--color-light-hover);
+}
+.draft-btn{
+    background: var(--dark);
+    padding: .5rem;
+    border: none;
+    border-radius: 1rem;
+    color: var(--primary-color-hover);
+    transition: 1s;
+}
+.draft-btn:hover{
+    cursor: pointer;
+    background: var(--dark-hover);
+}
+.save-btn{
+    background: var(--primary-color);
+    padding: .5rem;
+    border: none;
+    border-radius: 1rem;
+    color: var(--color-light-hover);
+    transition: 1s;
+}
+.save-btn:hover{
+    cursor: pointer;
+    background: var(--primary-color-hover);
+}
+
+/* MEDIA QUERY FOR TABLET DEVICES */
+@media screen and (max-width: 678px) {
+    .overlay{
+        left: 0;
+        top: 5rem;
+    }
+    .input-groups .addNew-invoice{
+        margin-bottom: 2rem;
+    }
+}
+
+/* ============MEDIA QUERY FOR MOBILE DEVICES=========== */
+@media screen and (max-width: 375px) {
+    .overlay{
+        left: 0;
+        top: 4rem;
+    }
+    .modal-content .main-modal{
+        width: 370px;
+        height: 100%;
+    }
+    .input-groups .addNew-invoice{
+        margin-bottom: 6rem;
+    }
+}

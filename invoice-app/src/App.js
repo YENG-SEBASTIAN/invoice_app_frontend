@@ -1,22 +1,17 @@
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+
+import MainBody from './components/main/MainBody'
+import SideBar from './components/sideBar/SideBar';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <SideBar/>
+    <Routes>
+        <Route path='/' element={<MainBody />} />
+      </Routes>
+    </>
   );
 }
 

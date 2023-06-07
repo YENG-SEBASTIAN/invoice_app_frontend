@@ -46,5 +46,18 @@ export default function validatorsInfo(values){
         errors.projectDescription = "Enter project description";
     }
 
+    if(!values.itemName.trim()){
+        errors.itemName = "Enter item name";
+    }
+    if(!values.itemCity.trim()){
+        errors.itemCity = "Enter City";
+    }
+    if(!values.itemPrice.trim()){
+        errors.itemPrice = "Enter item price";
+    }
+    if(!values.totalItem.trim()){
+        errors.totalItem = "Enter total";
+    }
+
     return errors
 }

@@ -148,74 +148,39 @@ const EditInvoice = ({ submitForm, editID, closeModal }) => {
                                 </div>
                             </div>
                             <div className="input-groups">
-                                <div className="input-combo">
-                                    <div className="combo">
-                                        <label htmlFor="invoiceDate">Invoice Date</label>
-                                        <input
-                                            type="date"
-                                            name="invoiceDate"
-                                            id="invoiceDate"
-                                            value={values.invoiceDate}
-                                            onChange={handleChange}
-                                        />
-                                        {errors.invoiceDate && <p className="danger error">{errors.invoiceDate}</p>}
-                                    </div>
-                                    <div className="combo">
-                                        <label htmlFor="paymentTerms">Post Code</label>
-                                        <select
-                                            name="paymentTerms"
-                                            id="paymentTerms"
-                                            onChange={handleChange}
-                                        >
-                                            <option value={values.paymentTerms}>Net 1 Day</option>
-                                            <option value={values.paymentTerms}>Net 7 Days</option>
-                                            <option value={values.paymentTerms}>Net 20 Days</option>
-                                            <option value={values.paymentTerms}>Net 30 Days</option>
-                                        </select>
-                                        {errors.paymentTerms && <p>{errors.paymentTerms}</p>}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="input-groups">
-                                <label htmlFor="projectDescription">Project Description</label>
-                                <input
-                                    type="text"
-                                    name="projectDescription"
-                                    id="projectDescription"
-                                    value={values.projectDescription}
-                                    onChange={handleChange}
-                                />
-                                {errors.projectDescription && <p className="danger error">{errors.projectDescription}</p>}
-                            </div>
-                            <h5>List Items</h5>
-                            <div className="input-groups list-items">
-                                <div className="input-combo">
+                            <div className="input-combo">
                                     <div className="combo">
                                         <label htmlFor="itemName">Item Name</label>
                                         <input
                                             type="text"
                                             name="itemName"
                                             id="itemName"
-                                            disabled
+                                            value={values.itemName}
+                                            onChange={handleChange}
                                         />
+                                    {errors.itemName && <p className="danger error">{errors.itemName}</p>}
                                     </div>
                                     <div className="combo">
                                         <label htmlFor="itemCityitemPrice">City</label>
                                         <input
                                             type="text"
-                                            name="itemCityitemPrice"
-                                            id="itemCityitemPrice"
-                                            disabled
+                                            name="itemCity"
+                                            id="itemCity"
+                                            value={values.itemCity}
+                                            onChange={handleChange}
                                         />
+                                    {errors.itemCity && <p className="danger error">{errors.itemCity}</p>}
                                     </div>
                                     <div className="combo">
                                         <label htmlFor="itemPrice">Price</label>
                                         <input
-                                            type="text"
+                                            type="number"
                                             name="itemPrice"
                                             id="itemPrice"
-                                            disabled
+                                            value={values.itemPrice}
+                                            onChange={handleChange}
                                         />
+                                    {errors.itemPrice && <p className="danger error">{errors.itemPrice}</p>}
                                     </div>
                                     <div className="combo">
                                         <label htmlFor="totalItem">Total</label>
@@ -223,13 +188,15 @@ const EditInvoice = ({ submitForm, editID, closeModal }) => {
                                             type="text"
                                             name="totalItem"
                                             id="totalItem"
-                                            disabled
+                                            value={values.totalItem}
+                                            onChange={handleChange}
                                         />
+                                    {errors.totalItem && <p className="danger error">{errors.totalItem}</p>}
                                     </div>
                                     <div className="combo">
                                         <img src={icons.deleteBtn} alt="" />
                                     </div>
-                                </div>
+                                </div>                               
                             </div>
                             <div className="input-groups">
                                 <button>

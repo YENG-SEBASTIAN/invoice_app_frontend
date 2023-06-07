@@ -15,7 +15,11 @@ const useForm = (validatorsInfo) => {
         toCountry : '',
         invoiceDate : '',
         paymentTerms : '',
-        projectDescription : ''
+        projectDescription : '',
+        itemName : '',
+        itemCity : '',
+        itemPrice : '',
+        totalItem : ''
     });
 
     const[errors, setErrors] = useState({});

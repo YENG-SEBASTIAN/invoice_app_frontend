@@ -2,9 +2,9 @@
     width: 100vw;
     height: 100vh;
     position: fixed;
-    left: 6rem;
+    left: 5rem;
     top: 0;
-    background: rgba(49, 49, 47, 0.8);
+    background: var(--card);
 }
 .overlay .modal-content{
     width: 25rem;

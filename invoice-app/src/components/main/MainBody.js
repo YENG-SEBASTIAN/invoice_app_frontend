@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import NewInvoice from '../modals/newInvoice/NewInvoice';
+import IconArrowDown from "../../assets/icon-arrow-down.svg";
+import  IconCheck from "../../assets/icon-check.svg";
 
 const MainBody = () => {
 
@@ -12,6 +14,16 @@ const MainBody = () => {
   const [openModal, setOpenModal] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate()
+
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const [selectedOption, setSelectedOption] = React.useState("");
+
+  const handleOptionChange = async (event) => {
+    setSelectedOption(event.target.value);
+    // const filteredInvoice = await filterInvoiceByStatus(event.target.value);
+    // setInvoices(filteredInvoice.invoice);
+  };
 
   useEffect(() => {
     axios
@@ -59,9 +71,71 @@ const MainBody = () => {
               <p>There are {data.length} invoices</p>
             </div>
             <div className="right">
-              <div className="filter">
-                <p>Filter by status <img src={icons.arrowDown} alt="" /></p>
+            <span className="invoice-filter">
+          <div className="dropdown-container">
+            <div
+              className="dropdown-trigger"
+              onClick={() => {
+                setIsOpen(!isOpen);
+                console.log(isOpen);
+              }}
+            >
+              <span className="filter-text">
+                Filter <span className="by-status">by status</span>
+              </span>
+              <img
+                src={IconArrowDown}
+                alt="icon-arrow-down"
+              />
+            </div>
+            {isOpen && (
+              <div className="dropdown-options">
+                <label className="radio-label">
+                  <input
+                    type="radio"
+                    value="Draft"
+                    checked={selectedOption === "Draft"}
+                    onChange={handleOptionChange}
+                  />
+                  <span className="radio-custom">
+                    {selectedOption === "Draft" && (
+                      <img src={IconCheck} alt="icon-check" />
+                    )}
+                  </span>
+                  Draft
+                </label>
+                <label className="radio-label">
+                  <input
+                    type="radio"
+                    value="Pending"
+                    checked={selectedOption === "Pending"}
+                    onChange={handleOptionChange}
+                  />
+                  <span className="radio-custom">
+                    {selectedOption === "Pending" && (
+                      <img src={IconCheck} alt="icon-check" />
+                    )}
+                  </span>
+                  Pending
+                </label>
+                <label className="radio-label">
+                  <input
+                    type="radio"
+                    value="Paid"
+                    checked={selectedOption === "Paid"}
+                    onChange={handleOptionChange}
+                  />
+                  <span className="radio-custom">
+                    {selectedOption === "Paid" && (
+                      <img src={IconCheck} alt="icon-check" />
+                    )}
+                  </span>
+                  Paid
+                </label>
               </div>
+            )}
+          </div>
+        </span>
               <div className="newInvoice">
                 <button
                   onClick={() => setOpenModal(true)}

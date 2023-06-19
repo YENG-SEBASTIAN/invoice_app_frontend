@@ -4,12 +4,13 @@
     position: fixed;
     left: 5rem;
     top: 0;
-    background: var(--card);
+    background: rgba(7, 7, 7, 0.829);
+    overflow-y: scroll;
 }
 .overlay .modal-content{
     width: 25rem;
     height: 100vh;
-    background: var(--card);
+    background: var(--modal);
     border-radius: 0rem 1rem 1rem 0rem;
     padding: .5rem;
 }
@@ -43,6 +44,8 @@
     padding: .4rem;
     border-radius: .3rem;
     border: 1px solid var(--primary-color-hover);
+    background: var(--bg-color);
+    color: var(--dark);
 }
 .input-groups .input-combo{
     display: flex;
@@ -69,7 +72,7 @@
     background: var(--color-light-hover);
 }
 .invoice-control-btn{
-    background: var(--color-light);
+    background: var(--modal);
     border-radius: 1rem;
     position: fixed;
     bottom: 0;

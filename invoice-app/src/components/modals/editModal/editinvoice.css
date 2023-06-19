@@ -1,3 +1,7 @@
+.main-modal form h2{
+    color: var(--dark);
+}
+
 .cancel-save-btn {
     display: flex;
     align-items: center;

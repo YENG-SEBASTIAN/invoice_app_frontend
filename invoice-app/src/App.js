@@ -11,7 +11,7 @@ function App() {
       <SideBar />
       <Routes>
         <Route path='/' element={<MainBody />} />
-        <Route path='/viewInvoice/:id' element={<CardDetails />} />
+        <Route path='/viewInvoice/:id/' element={<CardDetails />} />
       </Routes>
     </>
   );

@@ -2,24 +2,28 @@
     width: 100vw;
     height: 100vh;
     position: fixed;
-    left: 5.6rem;
+    left: 5rem;
     top: 0;
     background: rgba(49, 49, 47, 0.8);
 }
 .deleteModalContent{
-    border: 1px solid var(--card);
+    border: 1px solid var(--edit-hover-color);
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    background: var(--card);
+    background: var(--delete);
     width: 30rem;
     position: fixed;
     left: 35%;
     top: 30%;
 }
+.header h2{
+    color: var(--dark);
+}
 .msg{
     padding: 1rem;
+    color: var(--edit-hover-color);
 } 
 .actionBtns{
     display: flex;

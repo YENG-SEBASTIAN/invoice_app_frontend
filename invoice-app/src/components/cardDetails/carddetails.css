@@ -8,6 +8,7 @@
     left: 7rem;
     height: 100vh;
     width: 90vw;
+    overflow-y: scroll;
 }
 .viewcard-container .back-btn{
     width: 700px;
@@ -17,7 +18,9 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    color: var(--dark);
 }
+
 .viewcard-header{
     display: flex;
     align-items: center;
@@ -26,6 +29,11 @@
     width: 700px;
     padding: 1rem;
     margin-bottom: 2rem;
+    border: 1px solid var(--card-color);
+    background: var(--card-color);
+}
+.viewcard-header h4{
+    color: var(--dark);
 }
 .card-status{
     display: flex;
@@ -36,6 +44,10 @@
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
+}
+.viewcard-btns .edit-btn .edit{
+    background: var(--edit);
+    color: var(--dark);
 }
 .viewcard-btns button{
     border-radius: 2rem;
@@ -55,6 +67,14 @@
     width: 700px;
     background: var(--card);
     padding: 2rem;
+    border: 1px solid var(--card-color);
+    background: var(--card-color);
+}
+.viewcard-body h3, .viewcard-body h4{
+    color: var(--dark);
+}
+.viewcard-body p{
+    color: var(--dark);
 }
 .viewcard-body .card-address, .invoice-details{
     display: flex;
@@ -76,8 +96,8 @@
     width: 100%;
 }
 .viewcard-checkout .list-item{
-    background: var(--edit-color);
-    border-radius: .5rem;
+    background: var(--card-table);
+    border-radius: .5rem .5rem 0 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -85,10 +105,12 @@
 .list-item table tr th{
     width: 20rem;
     padding: 1rem;
+    color: var(--table-head-color);
 }
 .list-item table tbody tr td{
     text-align: center;
     padding: .5rem;
+    color: var(--table-head-color);
 }
 .viewcard-checkout .list-item h4{
     padding: .5rem;
@@ -108,6 +130,10 @@
     color: var(--card);
     padding: 1rem;
     border-radius: 0 0 .5rem .5rem;
+    background: var(--amount-due);
+}
+.amountDue h2, .amountDue h5{
+    color: var(--gray);
 }
 /* MEDIA QUERY FOR TABLET DEVICES */
 @media screen and (max-width: 1024px) {

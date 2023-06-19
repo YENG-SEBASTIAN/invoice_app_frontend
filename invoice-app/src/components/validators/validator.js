@@ -22,8 +22,8 @@ export default function validatorsInfo(values){
     }
     if(!values.clientEmail.trim()){
         errors.clientEmail = "Enter client email";
-    }else if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.clientEmail)){
-        errors.clientEmail = "Enter a valid email";
+    // }else if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.clientEmail)){
+    //     errors.clientEmail = "Enter a valid email";
     }
     if(!values.clientStreetAddress.trim()){
         errors.clientStreetAddress = "Enter client street address";
@@ -46,18 +46,18 @@ export default function validatorsInfo(values){
         errors.projectDescription = "Enter project description";
     }
 
-    if(!values.itemName.trim()){
-        errors.itemName = "Enter item name";
-    }
-    if(!values.itemCity.trim()){
-        errors.itemCity = "Enter City";
-    }
-    if(!values.itemPrice.trim()){
-        errors.itemPrice = "Enter item price";
-    }
-    if(!values.totalItem.trim()){
-        errors.totalItem = "Enter total";
-    }
+    // if(!values.itemName.trim()){
+    //     errors.itemName = "Enter item name";
+    // }
+    // if(!values.itemQty.trim()){
+    //     errors.itemQty = "Enter quantity";
+    // }
+    // if(!values.itemPrice.trim()){
+    //     errors.itemPrice = "Enter item price";
+    // }
+    // if(!values.totalItem.trim()){
+    //     errors.totalItem = "Enter total";
+    // }
 
     return errors
 }

@@ -1,6 +1,7 @@
-:root{
+:root {
   --primary-color: #7C5DFA;
   --primary-color-hover: #9277FF;
+  --customize-primary-color: #1E2139;
   --danger: #EC5757;
   --danger-hover: rgb(255, 151, 151);
   --dark: #1E2139;
@@ -9,15 +10,22 @@
   --color-light-hover: #DFE3FA;
   --bg-color: #f8f8f8;
   --card-color: #ffffff;
-  --card-color2: #f9fafe;
-  --card-color3: #373b53;
+  --card-table: #DFE3FA;
+  --card-color3: #6d6e72;
   --edit-color: #DFE3FA;
+  --table-head-color: #676975;
   --edit-hover-color: #F8F8FB;
   --gray: rgb(212, 209, 209);
+  --modal: #fff;
+  --amount-due: #141625;
+  --edit : #DFE3FA;
+  --delete : #fff;
 }
-[data-theme="dark"]{
+
+[data-theme="dark"] {
   --primary-color: #7C5DFA;
   --primary-color-hover: #9277FF;
+  --customize-primary-color: #1E2139;
   --danger: #EC5757;
   --danger-hover: rgb(255, 151, 151);
   --dark: #fff;
@@ -26,74 +34,117 @@
   --color-light-hover: #DFE3FA;
   --bg-color: #141625;
   --card-color: #1E2139;
-  --card-color2: #f9fafe;
+  --card-table: #1E2139;
   --card-color3: #373b53;
-  --edit-color: #DFE3FA;
-  --edit-hover-color: #F8F8FB;
+  --table-head-color: #DFE3FA;
+  --edit-hover-color: #000;
   --gray: rgb(212, 209, 209);
+  --modal: #1E2139;
+  --amount-due: #141625;
+  --edit : #0C0E16;
+  --delete: #141625
 }
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
-a{
+
+a {
   text-decoration: none;
   color: #000;
 }
-.edit{
+
+.edit {
   background: var(--edit-color);
 }
-.edit:hover{
+
+.edit:hover {
   background: var(--edit-hover-color);
 }
-.delete{
+
+.delete {
   background: var(--danger);
 }
-.delete:hover{
+
+.delete:hover {
   background: var(--danger-hover);
 }
-.saveAsPaid{
+
+.saveAsPaid {
   background: var(--primary-color);
 }
-.saveAsPaid:hover{
+
+.saveAsPaid:hover {
   background: var(--primary-color-hover);
 }
-.primary{
+
+.primary {
   color: var(--primary-color);
 }
-.primary-hover{
+
+.primary-hover {
   color: var(--primary-color-hover);
 }
-.danger{
+
+.danger {
   color: var(--danger);
 }
-.danger-hover{
+
+.danger-hover {
   color: var(--danger-hover);
 }
-.error{
+
+.error {
   font-size: .6rem;
   color: var(--danger);
 }
-body{
+
+body {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  background: var(--bg-color)
+  background: var(--bg-color);
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
 }
-h1{
+
+h1 {
   font-size: 32px;
 }
-h2{
+
+h2 {
   font-size: 20px;
 }
-h3{
+
+h3 {
   font-size: 12px;
 }
-.status p{
+
+.status p {
   font-size: .8rem;
   font-weight: 600;
 }
-.status-paid{
+
+.status-paid {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -103,14 +154,15 @@ h3{
   padding: .5rem;
   border-radius: .5rem;
 }
-.status .dot-paid{
+
+.status .dot-paid {
   width: .5rem;
   height: .5rem;
   background: rgb(48, 231, 48);
   border-radius: 50%;
 }
 
-.status-pending{
+.status-pending {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -120,14 +172,15 @@ h3{
   padding: .5rem;
   border-radius: .5rem;
 }
-.status .dot-pending{
+
+.status .dot-pending {
   width: .5rem;
   height: .5rem;
-  background:  #ffc077;
+  background: #ffc077;
   border-radius: 50%;
 }
 
-.status-draft{
+.status-draft {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -137,7 +190,8 @@ h3{
   padding: .5rem;
   border-radius: .5rem;
 }
-.status .dot-draft{
+
+.status .dot-draft {
   width: .5rem;
   height: .5rem;
   background: #888EB0;

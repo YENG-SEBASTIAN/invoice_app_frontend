@@ -2,8 +2,8 @@ import axios from "axios";
 import {useNavigate } from 'react-router-dom';
 
 
-export const baseURL = 'http://localhost:8000/invoice/';
-// export const baseURL = 'YengSebastian1.pythonanywhere.com/invoice/'
+// export const baseURL = 'http://localhost:8000/invoice/';
+export const baseURL = 'https://invoiceappbackend-production.up.railway.app/invoice/'
 
 export const GetViewDetails = (id) => {
     const navigate = useNavigate()

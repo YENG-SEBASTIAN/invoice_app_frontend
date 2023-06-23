@@ -7,7 +7,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import NewInvoice from '../modals/newInvoice/NewInvoice';
 import IconArrowDown from "../../assets/icon-arrow-down.svg";
 import IconCheck from "../../assets/icon-check.svg";
-import baseURL from '../validators/useForm'
+import { baseURL } from '../service/Service';
+
+
 const MainBody = () => {
 
   const [data, setData] = useState([]);
@@ -16,6 +18,7 @@ const MainBody = () => {
   const navigate = useNavigate()
 
   const [isOpen, setIsOpen] = React.useState(false);
+  const [invoicePaid, setInvoicePaid] = React .useState([])
 
   const [selectedOption, setSelectedOption] = React.useState("");
 
@@ -41,10 +44,30 @@ const MainBody = () => {
       console.log(selectedOption)
   };
 
+  const paidInvoices = async () => {
+    await axios.get(baseURL + `filter-paid/`)
+    .then(res => res.data)
+    .then(json => setData(json))
+    .catch(err => console.log(err))
+  }
+
+  const pendingInvoice = async () => {
+    await axios.get(baseURL + `filter-pending/`)
+    .then(res => res.data)
+    .then(json => setData(json))
+    .catch(err => console.log(err))
+  }
+
+  const draftInvoices = async () => {
+    await axios.get(baseURL + `filter-draft/`)
+    .then(res => res.data)
+    .then(json => setData(json))
+    .catch(err => console.log(err))
+  }
 
   useEffect(() => {
     axios
-      .get('http://localhost:8000/invoice/invoice-list/')
+      .get(baseURL+`invoice-list/`)
       .then(response => response.data)
       .then(json => setData(json))
       .catch(error => {
@@ -55,7 +78,7 @@ const MainBody = () => {
 
 
   const getViewDetails = (id) => {
-    axios.get('http://localhost:8000/invoice/invoice-list/')
+    axios.get(baseURL+`invoice-list/`)
       .then(response => {
         const foundObject = response.data.find(obj => obj.id === id);
         navigate(`viewInvoice/${id}/`, {
@@ -110,12 +133,15 @@ const MainBody = () => {
                   </div>
                   {isOpen && (
                     <div className="dropdown-options">
-                      <label className="radio-label">
+                      <label className="radio-label"
+                        onClick={draftInvoices}
+                      >
                         <input
                           type="radio"
                           value="Draft"
                           checked={selectedOption === "Draft"}
                           onChange={handleOptionChange}
+                          onClick={draftInvoices}
                         />
                         <span className="radio-custom">
                           {selectedOption === "Draft" && (
@@ -124,7 +150,9 @@ const MainBody = () => {
                         </span>
                         Draft
                       </label>
-                      <label className="radio-label">
+                      <label className="radio-label"
+                        onClick={pendingInvoice}
+                      >
                         <input
                           type="radio"
                           value="Pending"
@@ -138,7 +166,9 @@ const MainBody = () => {
                         </span>
                         Pending
                       </label>
-                      <label className="radio-label">
+                      <label className="radio-label"
+                      onClick={paidInvoices}
+                      >
                         <input
                           type="radio"
                           value="Paid"
@@ -178,17 +208,17 @@ const MainBody = () => {
                       <h4>#{item.id}</h4>
                       <p>{item.invoiceDate}</p>
                       <p>{item.clientName}</p>
-                      <h5>£ {item.items.total}</h5>
+                      <h5>£ {item.items.reduce((sum, item) => sum + item.itemPrice * item.itemQty, 0)}</h5>
 
                       {
-                        item.invoiceStatus === 'paid' ?
+                        item.invoiceStatus === 'Paid' ?
                           <>
                             <div className='status status-paid'>
                               <div className='dot-paid'></div>
                               <p>{item.invoiceStatus}</p>
                             </div>
                           </>
-                          : item.invoiceStatus === 'pending' ?
+                          : item.invoiceStatus === 'Pending' ?
                             <>
                               <div className='status status-pending'>
                                 <div className='dot-pending'></div>

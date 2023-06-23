@@ -6,6 +6,7 @@ import validatorsInfo from '../../validators/validator'
 import { useState } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
+import { baseURL } from '../../service/Service'
 
 const EditInvoice = ({ submitForm, editID, closeModal }) => {
     const param = useParams()
@@ -27,15 +28,6 @@ const EditInvoice = ({ submitForm, editID, closeModal }) => {
         totalItem: ''
     }])
 
-    let item, qauntity, price, total
-    for (let i = 0; i < inputList.length; i++) {
-        Object.keys(inputList).forEach(key => {
-            item = inputList[key].itemName;
-            qauntity = inputList[key].itemQty;
-            price = inputList[key].itemPrice;
-            total = inputList[key].itemQty * inputList[key].itemPric;
-        })
-    }
 
     const handleAddItemChange = (e, index) => {
         const { name, value } = e.target;
@@ -80,18 +72,11 @@ const EditInvoice = ({ submitForm, editID, closeModal }) => {
             paymentTerms: values.paymentTerms,
             projectDescription: values.projectDescription,
             // itemName: [itemname],
-            items: [
-                {
-                    "itemName": item,
-                    "itemQty": qauntity,
-                    "itemPrice": price,
-                    "totalItem": qauntity * price
-                }
-            ]
+            items: inputList
         }
         
         axios
-            .put(`http://localhost:8000/invoice/update-invoice/${id}/`, invoiceData)
+            .put(baseURL + `update-invoice/${id}/`, invoiceData)
             .then((response) => {
                 console.log(response.status);
                 window.location.href = "/"
@@ -319,7 +304,7 @@ const EditInvoice = ({ submitForm, editID, closeModal }) => {
                                                             type="text"
                                                             name="totalItem"
                                                             id="totalItem"
-                                                            value={price * qauntity}
+                                                            value={x.itemPrice * x.itemQty}
                                                             onChange={(e) => handleAddItemChange(e, i)}
                                                         />
                                                         {/* {errors.totalItem && <p className="danger error">{errors.totalItem}</p>} */}

@@ -5,6 +5,7 @@ import validatorsInfo from '../../validators/validator'
 import useForm from '../../validators/useForm'
 import { useState } from 'react'
 import axios from 'axios'
+import { baseURL } from '../../service/Service'
 
 const NewInvoice = ({ submitForm, closeModal }) => {
 
@@ -26,15 +27,6 @@ const NewInvoice = ({ submitForm, closeModal }) => {
         totalItem: ''
     }])
 
-    let item, qauntity, price, total
-    for (let i = 0; i < inputList.length; i++) {
-        Object.keys(inputList).forEach(key => {
-            item = inputList[key].itemName;
-            qauntity = inputList[key].itemQty;
-            price = inputList[key].itemPrice;
-            total = inputList[key].itemQty * inputList[key].itemPric;
-        })
-    }
 
     const handleAddItemChange = (e, index) => {
         const { name, value } = e.target;
@@ -79,18 +71,11 @@ const NewInvoice = ({ submitForm, closeModal }) => {
             paymentTerms: values.paymentTerms,
             projectDescription: values.projectDescription,
             // itemName: [itemname],
-            items: [
-                {
-                    "itemName": item,
-                    "itemQty": qauntity,
-                    "itemPrice": price,
-                    "totalItem": qauntity * price
-                }
-            ]
+            items: inputList
         }
 
         axios
-            .post('http://localhost:8000/invoice/send-save/', invoiceData)
+            .post(baseURL+`send-save/`, invoiceData)
             .then((response) => {
                 console.log(response.status);
                 window.location.href = "/"
@@ -122,18 +107,11 @@ const NewInvoice = ({ submitForm, closeModal }) => {
             paymentTerms: values.paymentTerms,
             projectDescription: values.projectDescription,
             // itemName: [itemname],
-            items: [
-                {
-                    "itemName": item,
-                    "itemQty": qauntity,
-                    "itemPrice": price,
-                    "totalItem": qauntity * price
-                }
-            ]
+            items: inputList
         }
 
         axios
-            .post('http://localhost:8000/invoice/send-draft/', invoiceData)
+            .post(baseURL+`send-draft/`, invoiceData)
             .then((response) => {
                 console.log(response.status);
                 window.location.href = "/"
@@ -355,6 +333,7 @@ const NewInvoice = ({ submitForm, closeModal }) => {
                                                     />
                                                     {/* {errors.itemPrice && <p className="danger error">{errors.itemPrice}</p>} */}
                                                 </div>
+                                                
                                                 <div className="combo">
                                                     <label htmlFor="totalItem">Total</label>
                                                     <input
@@ -362,7 +341,7 @@ const NewInvoice = ({ submitForm, closeModal }) => {
                                                         type="text"
                                                         name="totalItem"
                                                         id="totalItem"
-                                                        value={price * qauntity}
+                                                        value={x.itemPrice * x.itemQty}
                                                         onChange={(e) => handleAddItemChange(e, i)}
                                                     />
                                                     {/* {errors.totalItem && <p className="danger error">{errors.totalItem}</p>} */}

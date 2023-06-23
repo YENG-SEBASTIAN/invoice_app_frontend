@@ -5,6 +5,7 @@ import { icons } from '../../icons';
 import EditInvoice from '../modals/editModal/EditInvoice';
 import DeleteInvoice from '../modals/deleteModal/DeleteInvoice';
 import axios from 'axios';
+import { baseURL } from '../service/Service';
 
 const CardDetails = () => {
     const location = useLocation();
@@ -24,19 +25,17 @@ const CardDetails = () => {
         deleteModalBody.style.display = 'block';
     }
 
-    let item, qauntity, price, total
-    Object.keys(location.state.details.items).forEach(key => {
-        item = location.state.details.items[key].itemName;
-        qauntity = location.state.details.items[key].itemQty;
-        price = location.state.details.items[key].itemPrice;
-        total = location.state.details.items[key].totalItem;
-    })
-
 
     const handleMarkAsPaid = async (id) => {
-        await axios.put(`http://localhost:8000/invoice/update-invoice/${id}/`)
-        .then(res => res.status)
-        .catch(err => console.log(err))
+        const body = {
+            invoiceStatus: "Paid"
+        }
+        await axios.put(baseURL + `mark-paid/${id}/`, body)
+            .then(res => {
+                console.log(`res: ${res.status}`)
+                window.location.href = "/"
+            })
+            .catch(err => console.log(err))
     }
 
     return (
@@ -80,29 +79,47 @@ const CardDetails = () => {
 
 
                     </div>
-                    <div className="viewcard-btns">
-                        <div className="edit-btn">
-                            <button className='edit'
-                                onClick={
-                                    () => setOpenEditModal(true)
-                                }
-                            >Edit</button>
-                        </div>
-                        <div className="delete-btn">
-                            <button className='delete'
-                                onClick={
-                                    () => setOpenDeleteModal(true)
-                                }
-                            >Delete</button>
-                        </div>
-                        <div className="markAsPaid-btn">
-                            <button className='saveAsPaid'
-                                onClick={() => handleMarkAsPaid(param.id)}
-                            >
-                                Mark as paid
-                            </button>
-                        </div>
-                    </div>
+                    {
+                        location.state.details.invoiceStatus === 'Paid' ?
+                            <>
+                                <div className="viewcard-btns">
+                                    <div className="delete-btn">
+                                        <button className='delete'
+                                            onClick={
+                                                () => setOpenDeleteModal(true)
+                                            }
+                                        >Delete</button>
+                                    </div>
+                                </div>
+                            </>
+                            :
+                            <>
+                                <div className="viewcard-btns">
+                                    <div className="edit-btn">
+                                        <button className='edit'
+                                            onClick={
+                                                () => setOpenEditModal(true)
+                                            }
+                                        >Edit</button>
+                                    </div>
+                                    <div className="delete-btn">
+                                        <button className='delete'
+                                            onClick={
+                                                () => setOpenDeleteModal(true)
+                                            }
+                                        >Delete</button>
+                                    </div>
+                                    <div className="markAsPaid-btn">
+                                        <button className='saveAsPaid'
+                                            onClick={() => handleMarkAsPaid(param.id)}
+                                        >
+                                            Mark as paid
+                                        </button>
+                                    </div>
+                                </div>
+                            </>
+                    }
+
                 </div>
                 <div className="viewcard-body">
                     {
@@ -168,28 +185,25 @@ const CardDetails = () => {
                                     </thead>
                                     <tbody>
                                         {
-                                            location.state.details.items ? <>
-                                                <tr>
-                                                    <td>{item}</td>
-                                                    <td>{qauntity}</td>
-                                                    <td>£ {price}</td>
-                                                    <td>£ {total}</td>
-                                                </tr>
-                                            </> : ""
+                                            location.state.details.items ?
+                                                location.state.details.items.map((item) => <>
+                                                    <tr>
+                                                        <td>{item.itemName}</td>
+                                                        <td>{item.itemQty}</td>
+                                                        <td>£ {item.itemPrice}</td>
+                                                        <td>£ {(item.itemPrice * item.itemQty).toFixed(2)}</td>
+                                                    </tr>
+                                                </>)
+                                                : ""
                                         }
                                     </tbody>
-                                    {/* <tr>
-                                        <td>{item.itemName}</td>
-                                        <td>{item.itemQty}</td>
-                                        <td>£ {item.itemPrice}</td>
-                                        <td>£ {item.totalItem}</td>
-                                    </tr> */}
+                           
                                 </table>
 
                             </div>
                             <div className="amountDue">
                                 <h5>AmountDue</h5>
-                                <h2>£ {total}</h2>
+                                <h2>£ {location.state.details.items.reduce((sum, item) => sum + item.itemPrice * item.itemQty, 0)}</h2>
                             </div>
                         </div>
                     </div>

@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from 'axios';
 import validatorsInfo from "./validator";
 
-
-export const baseURL = 'http://localhost:8000/invoice/';
 
 const useForm = (validatorsInfo) => {
     const [values, setValues] = useState({
@@ -36,13 +34,6 @@ const useForm = (validatorsInfo) => {
             [name]: value
         })
     }
-
-
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     setErrors(validatorsInfo(values));
-    // }
     
 
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import './deleteinvoice.css'
 import axios from 'axios'
-import { useParams, useNavigate} from 'react-router-dom'
+import { baseURL } from '../../service/Service'
 
 const DeleteInvoice = ({ invoiceID, closeModal }) => {
 
@@ -17,7 +17,7 @@ const DeleteInvoice = ({ invoiceID, closeModal }) => {
 
     const deleteInvoice = (id) => {
 
-        axios.delete('http://localhost:8000/invoice/delete-invoice/'+`${id}/`)
+        axios.delete( baseURL + `delete-invoice/${id}/`)
         .then(response => {
           console.log(`Deleted post with ID ${id}`);
           window.location = '/'
